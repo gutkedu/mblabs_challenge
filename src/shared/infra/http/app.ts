@@ -22,6 +22,7 @@ app.use(
     if (err instanceof AppError) {
       return response.status(err.statusCode).json({
         message: err.message,
+        error: err.validation,
       });
     }
 

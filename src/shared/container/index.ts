@@ -1,15 +1,17 @@
 import { container } from "tsyringe";
-import { UserRepository } from "@modules/account/infra/typeorm/repositories/UserRepository";
+import "../container/providers";
+
 import { UserTokensRepository } from "@modules/account/infra/typeorm/repositories/UserTokensRepository";
 import { IUsersRepository } from "@modules/account/repositories/IUserRepository";
-import { IUsersTokensRepository } from "@modules/account/repositories/IUserTokensRepository";
+import { IUserTokensRepository } from "@modules/account/repositories/IUserTokensRepository";
+import { UsersRepository } from "@modules/account/infra/typeorm/repositories/UsersRepository";
 
 container.registerSingleton<IUsersRepository>(
   "UsersRepository",
-  UserRepository
+  UsersRepository
 );
 
-container.registerSingleton<IUsersTokensRepository>(
+container.registerSingleton<IUserTokensRepository>(
   "UserTokensRepository",
   UserTokensRepository
 );

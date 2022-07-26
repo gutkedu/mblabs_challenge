@@ -24,6 +24,10 @@ export class CreateTicketsTable1658841517058 implements MigrationInterface {
             type: "varchar",
           },
           {
+            name: "event_date",
+            type: "timestamp",
+          },
+          {
             name: "updated_at",
             type: "timestamp",
             default: "now()",

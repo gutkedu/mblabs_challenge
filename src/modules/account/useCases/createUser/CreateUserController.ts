@@ -13,7 +13,9 @@ export class CreateUserController {
     user.name = name;
     user.email = email;
     user.password = password;
+
     const error = await validate(user);
+
     if (error.length > 0) {
       throw new AppError("validation failed", 400, error);
     }

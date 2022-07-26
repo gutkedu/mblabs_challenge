@@ -3,8 +3,6 @@ import { inject, injectable } from "tsyringe";
 import { ICreateUserDTO } from "@modules/account/dtos/ICreateUserDTO";
 import { IUsersRepository } from "@modules/account/repositories/IUserRepository";
 import { AppError } from "@shared/infra/errors/AppError";
-import { validate } from "class-validator";
-import { User } from "@modules/account/infra/typeorm/entities/User";
 
 @injectable()
 export class CreateUserUseCase {
@@ -17,7 +15,7 @@ export class CreateUserUseCase {
     const userAlreadyExist = await this.usersRepository.findByEmail(email);
 
     if (userAlreadyExist) {
-      throw new AppError("User already exist");
+      throw new AppError("user already exist");
     }
 
     const passwordHash = await hash(password, 8);

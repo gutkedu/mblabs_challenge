@@ -1,6 +1,20 @@
 import { v4 as uuidV4 } from "uuid";
-import { IsEmail, IsString, MaxLength, MinLength } from "class-validator";
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import {
+  IsAlpha,
+  IsEmail,
+  IsString,
+  MaxLength,
+  MinLength,
+} from "class-validator";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryColumn,
+} from "typeorm";
+import { Role } from "./Role";
 
 @Entity("users")
 class User {
@@ -8,6 +22,7 @@ class User {
   id: string;
 
   @Column()
+  @IsAlpha()
   @MaxLength(25)
   @MinLength(3)
   name: string;
@@ -21,6 +36,14 @@ class User {
   @MinLength(6)
   @MaxLength(20)
   password: string;
+
+  @ManyToMany(() => Role)
+  @JoinTable({
+    name: "user_roles",
+    joinColumns: [{ name: "user_id" }],
+    inverseJoinColumns: [{ name: "role_id" }],
+  })
+  roles: Role[];
 
   @CreateDateColumn()
   updated_at: Date;

@@ -6,7 +6,7 @@ import "@shared/container";
 import createConnection from "@shared/infra/typeorm";
 import "@shared/infra/typeorm";
 
-import { AppError } from "@shared/errors/AppError";
+import { AppError } from "@shared/infra/errors/AppError";
 import { router } from "./routes";
 
 createConnection();

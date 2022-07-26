@@ -1,5 +1,5 @@
 import { IUsersRepository } from "@modules/account/repositories/IUserRepository";
-import { AppError } from "@shared/errors/AppError";
+import { AppError } from "@shared/infra/errors/AppError";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

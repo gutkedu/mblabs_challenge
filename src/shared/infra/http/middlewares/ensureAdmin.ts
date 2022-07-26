@@ -25,7 +25,6 @@ export async function ensureAdmin(
       .getOne();
 
     user.roles.forEach((element) => {
-      console.log(element);
       if (element.id === adminRole.id) {
         isAdmin = true;
       }

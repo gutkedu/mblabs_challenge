@@ -13,7 +13,7 @@ export class RemoveUserUseCase {
     const userExist = await this.usersRepository.findById(id);
 
     if (!userExist) {
-      throw new AppError("User not found");
+      throw new AppError("user not found");
     }
 
     await this.usersRepository.delete(id);

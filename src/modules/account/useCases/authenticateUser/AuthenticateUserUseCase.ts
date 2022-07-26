@@ -5,6 +5,7 @@ import { IUserTokensRepository } from "@modules/account/repositories/IUserTokens
 import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
 import { AppError } from "@shared/infra/errors/AppError";
 import authConfig from "@config/authConfig";
+import { compare } from "bcryptjs";
 
 interface IRequest {
   email: string;
@@ -43,6 +44,12 @@ export class AuthenticateUserUseCase {
 
     if (!user) {
       throw new AppError("incorrect email or password");
+    }
+
+    const passwordMatch = await compare(password, user.password);
+
+    if (!passwordMatch) {
+      throw new AppError("Email or password is incorrect");
     }
 
     const token = sign({}, secret_token, {

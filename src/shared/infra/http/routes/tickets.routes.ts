@@ -22,7 +22,7 @@ ticketsRoutes.delete(
   deleteTicketController.handle
 );
 
-ticketsRoutes.get("/:id", ensureAuth, findTicketController.handle);
+ticketsRoutes.get("/:id", findTicketController.handle);
 
 ticketsRoutes.get("/", findAllTicketsController.handle);
 

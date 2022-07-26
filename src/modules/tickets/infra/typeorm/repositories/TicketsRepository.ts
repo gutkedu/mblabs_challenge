@@ -48,4 +48,9 @@ export class TicketRepository implements ITicketsRepository {
       .execute();
     return;
   }
+
+  async findByEvent(event: string): Promise<Ticket> {
+    const ticket = await this.repository.findOne({ event: event });
+    return ticket;
+  }
 }

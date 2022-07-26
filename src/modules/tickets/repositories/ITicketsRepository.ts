@@ -9,6 +9,7 @@ export interface ITicketsRepository {
     event_date,
   }: ICreateTicketDTO): Promise<Ticket>;
   findById(id: string): Promise<Ticket>;
+  findByEvent(event: string): Promise<Ticket>;
   findAll(): Promise<Ticket[]>;
   deleteById(id: string): Promise<void>;
 }

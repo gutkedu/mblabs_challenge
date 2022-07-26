@@ -1,3 +1,4 @@
+import { v4 as uuidV4 } from "uuid";
 import {
   IsAlphanumeric,
   IsDate,
@@ -6,8 +7,9 @@ import {
   IsString,
   MaxLength,
 } from "class-validator";
-import { Column, CreateDateColumn, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 
+@Entity("tickets")
 export class Ticket {
   @PrimaryColumn()
   id: string;
@@ -36,4 +38,10 @@ export class Ticket {
 
   @CreateDateColumn()
   created_at: Date;
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuidV4();
+    }
+  }
 }

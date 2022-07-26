@@ -2,6 +2,7 @@ import { v4 as uuidV4 } from "uuid";
 import {
   IsAlphanumeric,
   IsDate,
+  IsDateString,
   IsNumber,
   IsPositive,
   IsString,
@@ -15,7 +16,7 @@ export class Ticket {
   id: string;
 
   @Column()
-  @IsAlphanumeric()
+  @IsString()
   @MaxLength(50)
   event: string;
 
@@ -30,7 +31,7 @@ export class Ticket {
   description: string;
 
   @Column()
-  @IsDate()
+  @IsDateString()
   event_date: Date;
 
   @CreateDateColumn()

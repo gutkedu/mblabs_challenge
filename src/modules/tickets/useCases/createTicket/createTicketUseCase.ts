@@ -22,13 +22,13 @@ export class CreateTicketUseCase {
     const eventAlreadyExist = await this.ticketsRepository.findByEvent(event);
 
     if (eventAlreadyExist) {
-      throw new AppError("event already exist");
+      throw new AppError("a ticket with the same event name already exist");
     }
 
     if (
       this.dateProvider.compareIfBefore(event_date, this.dateProvider.dateNow())
     ) {
-      throw new AppError("needs to be future date");
+      throw new AppError("event need to happen in a future date");
     }
 
     const ticket = await this.ticketsRepository.create({

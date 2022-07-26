@@ -7,6 +7,8 @@ import { IUserTokensRepository } from "@modules/account/repositories/IUserTokens
 import { UsersRepository } from "@modules/account/infra/typeorm/repositories/UsersRepository";
 import { IRolesRepository } from "@modules/account/repositories/IRolesRepository";
 import { RolesRepository } from "@modules/account/infra/typeorm/repositories/RolesRepository";
+import { ITicketsRepository } from "@modules/tickets/repositories/ITicketsRepository";
+import { TicketRepository } from "@modules/tickets/infra/typeorm/repositories/TicketsRepository";
 
 container.registerSingleton<IUsersRepository>(
   "UsersRepository",
@@ -21,4 +23,9 @@ container.registerSingleton<IUserTokensRepository>(
 container.registerSingleton<IRolesRepository>(
   "RolesRepository",
   RolesRepository
+);
+
+container.registerSingleton<ITicketsRepository>(
+  "TicketsRepository",
+  TicketRepository
 );

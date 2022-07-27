@@ -1,31 +1,20 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateOrdersTable1658877991245 implements MigrationInterface {
+export class CreateOrdersTicketsTable1658885118725
+  implements MigrationInterface
+{
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "orders",
+        name: "orders_tickets",
         columns: [
           {
-            name: "id",
-            type: "uuid",
-            isPrimary: true,
-          },
-          {
-            name: "status",
-            type: "varchar",
-          },
-          {
-            name: "expires_in",
-            type: "timestamp",
-          },
-          {
-            name: "user_id",
+            name: "order_id",
             type: "uuid",
           },
           {
-            name: "total_price",
-            type: "numeric",
+            name: "ticket_id",
+            type: "uuid",
           },
           {
             name: "created_at",
@@ -35,10 +24,18 @@ export class CreateOrdersTable1658877991245 implements MigrationInterface {
         ],
         foreignKeys: [
           {
-            name: "FKUserOrder",
-            referencedTableName: "users",
+            name: "FKTicketOrder",
+            referencedTableName: "tickets",
             referencedColumnNames: ["id"],
-            columnNames: ["user_id"],
+            columnNames: ["ticket_id"],
+            onDelete: "CASCADE",
+            onUpdate: "CASCADE",
+          },
+          {
+            name: "FKOrderTicket",
+            referencedTableName: "orders",
+            referencedColumnNames: ["id"],
+            columnNames: ["order_id"],
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
           },
@@ -48,6 +45,6 @@ export class CreateOrdersTable1658877991245 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("orders");
+    await queryRunner.dropTable("user_roles");
   }
 }

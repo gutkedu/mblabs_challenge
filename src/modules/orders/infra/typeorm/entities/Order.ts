@@ -1,13 +1,16 @@
+import orderConfig from "@config/orderConfig";
 import { User } from "@modules/account/infra/typeorm/entities/User";
 import { Ticket } from "@modules/tickets/infra/typeorm/entities/Ticket";
-import { IsDateString, IsIn } from "class-validator";
+import { IsDateString, IsIn, IsPositive } from "class-validator";
+import dayjs from "dayjs";
 import {
   Column,
   CreateDateColumn,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
-  OneToOne,
   PrimaryColumn,
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
@@ -29,9 +32,17 @@ export class Order {
   @JoinColumn({ name: "user_id" })
   user: User;
 
-  @OneToOne(() => Ticket)
-  @JoinColumn({ name: "ticket_id" })
-  ticket: Ticket;
+  @ManyToMany(() => Ticket)
+  @JoinTable({
+    name: "orders_tickets",
+    joinColumns: [{ name: "order_id" }],
+    inverseJoinColumns: [{ name: "ticket_id" }],
+  })
+  tickets: Ticket[];
+
+  @Column()
+  @IsPositive()
+  total_price: number;
 
   @CreateDateColumn()
   created_at: Date;
@@ -39,6 +50,10 @@ export class Order {
   constructor() {
     if (!this.id) {
       this.id = uuidV4();
+      this.status = "pending";
+      this.expires_in = dayjs()
+        .add(orderConfig.expireInHours, "hours")
+        .toDate();
     }
   }
 }

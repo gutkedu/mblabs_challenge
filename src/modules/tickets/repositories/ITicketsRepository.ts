@@ -12,4 +12,5 @@ export interface ITicketsRepository {
   findByEvent(event: string): Promise<Ticket>;
   findAll(): Promise<Ticket[]>;
   deleteById(id: string): Promise<void>;
+  findByIds(tickets_id: string[]): Promise<Ticket[]>;
 }

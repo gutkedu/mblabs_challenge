@@ -2,7 +2,6 @@ import orderConfig from "@config/orderConfig";
 import { User } from "@modules/account/infra/typeorm/entities/User";
 import { Ticket } from "@modules/tickets/infra/typeorm/entities/Ticket";
 import { IsDateString, IsIn, IsPositive } from "class-validator";
-import dayjs from "dayjs";
 import {
   Column,
   CreateDateColumn,
@@ -51,9 +50,6 @@ export class Order {
     if (!this.id) {
       this.id = uuidV4();
       this.status = "pending";
-      this.expires_in = dayjs()
-        .add(orderConfig.expireInHours, "hours")
-        .toDate();
     }
   }
 }

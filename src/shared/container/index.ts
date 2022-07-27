@@ -9,6 +9,8 @@ import { IRolesRepository } from "@modules/account/repositories/IRolesRepository
 import { RolesRepository } from "@modules/account/infra/typeorm/repositories/RolesRepository";
 import { ITicketsRepository } from "@modules/tickets/repositories/ITicketsRepository";
 import { TicketRepository } from "@modules/tickets/infra/typeorm/repositories/TicketsRepository";
+import { IOrdersRepository } from "@modules/orders/repositories/IOrdersRepository";
+import { OrdersRepository } from "@modules/orders/infra/typeorm/repositories/OrdersRepository";
 
 container.registerSingleton<IUsersRepository>(
   "UsersRepository",
@@ -28,4 +30,9 @@ container.registerSingleton<IRolesRepository>(
 container.registerSingleton<ITicketsRepository>(
   "TicketsRepository",
   TicketRepository
+);
+
+container.registerSingleton<IOrdersRepository>(
+  "OrdersRepository",
+  OrdersRepository
 );

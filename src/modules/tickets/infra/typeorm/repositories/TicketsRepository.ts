@@ -53,4 +53,9 @@ export class TicketRepository implements ITicketsRepository {
     const ticket = await this.repository.findOne({ event: event });
     return ticket;
   }
+
+  async findByIds(tickets_id: string[]): Promise<Ticket[]> {
+    const tickets = await this.repository.findByIds(tickets_id);
+    return tickets;
+  }
 }

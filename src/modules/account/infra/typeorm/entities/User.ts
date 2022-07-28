@@ -17,7 +17,7 @@ import {
 import { Role } from "./Role";
 
 @Entity("users")
-class User {
+export class User {
   @PrimaryColumn()
   id: string;
 
@@ -57,5 +57,3 @@ class User {
     }
   }
 }
-
-export { User };

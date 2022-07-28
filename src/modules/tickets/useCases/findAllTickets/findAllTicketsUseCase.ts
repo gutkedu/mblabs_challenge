@@ -10,7 +10,6 @@ export class FindAllTicketsUseCase {
   ) {}
 
   async execute(): Promise<Ticket[]> {
-    
     const tickets = await this.ticketsRepository.findAll();
 
     return tickets;

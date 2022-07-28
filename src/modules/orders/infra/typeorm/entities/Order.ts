@@ -1,5 +1,5 @@
-import { User } from "@modules/account/infra/typeorm/entities/User";
-import { Ticket } from "@modules/tickets/infra/typeorm/entities/Ticket";
+import { User } from "../../../../account/infra/typeorm/entities/User";
+import { Ticket } from "../../../../tickets/infra/typeorm/entities/Ticket";
 import { IsDateString, IsIn, IsPositive } from "class-validator";
 import {
   Column,

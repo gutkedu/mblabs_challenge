@@ -13,7 +13,7 @@ const deleteTicketController = new DeleteTicketController();
 const findTicketController = new FindTicketController();
 const findAllTicketsController = new FindAllTicketsController();
 
-ticketsRoutes.post("/", createTicketController.handle);
+ticketsRoutes.post("/", ensureAuth, ensureAdmin, createTicketController.handle);
 
 ticketsRoutes.delete(
   "/:id",

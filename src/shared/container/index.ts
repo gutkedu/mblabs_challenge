@@ -11,6 +11,8 @@ import { ITicketsRepository } from "@modules/tickets/repositories/ITicketsReposi
 import { TicketRepository } from "@modules/tickets/infra/typeorm/repositories/TicketsRepository";
 import { IOrdersRepository } from "@modules/orders/repositories/IOrdersRepository";
 import { OrdersRepository } from "@modules/orders/infra/typeorm/repositories/OrdersRepository";
+import { IUserPaymentRepository } from "@modules/payment/repositories/IUserPaymentRepository";
+import { UserPaymentRepository } from "@modules/payment/infra/typeorm/repositories/UserPaymentRepository";
 
 container.registerSingleton<IUsersRepository>(
   "UsersRepository",
@@ -35,4 +37,9 @@ container.registerSingleton<ITicketsRepository>(
 container.registerSingleton<IOrdersRepository>(
   "OrdersRepository",
   OrdersRepository
+);
+
+container.registerSingleton<IUserPaymentRepository>(
+  "UserPaymentRepository",
+  UserPaymentRepository
 );

@@ -16,7 +16,7 @@
 - [Nodemailer](https://nodemailer.com/about/)
 - [Docker](https://www.docker.com/)
 
-## Rodando o projeto
+## Rodando a aplicação
 
 ### Docker
 
@@ -30,7 +30,7 @@ $ docker compose up
 # Install the dependencies
 $ npm i
 
-# create .env.local file
+# create .env file
 FORGOT_MAIL_URL=http://localhost:3333/password/reset?token=
 STRIPE_TEST_API_KEY="Stripe test api Key"
 STRIPE_TEST_API_SECRET="Stripe test API secret"

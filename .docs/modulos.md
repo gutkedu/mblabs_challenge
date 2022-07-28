@@ -2,29 +2,20 @@
 
 ## Account:
 
-- [UserToken] POST /api/v1/login \
+- [Public] POST base_url/login \
   `Login de usuário`
   >
-- [UserToken] POST /api/v1/logout \
-  `Logout de usuário`
+- [Public] POST base_url/refresh-token \
+  `Gera novo token ao usuário a partir do seu refresh-token`
   >
-- [Public] POST /api/v1/password/forgot \
+- [Public] POST base_url/password/forgot \
   `Envia email para recuperar senha`
   >
-- [Public] POST /api/v1/password/reset \
+- [Public] POST base_url/password/reset?token="id" \
   `Adiciona nova senha ao usuário`
   >
-- [Public] POST /api/v1/users \
+- [Public] POST base_url/users \
    `Cadastro (Sign up) de usuário`
-  >
-- [Admin] GET /api/v1/users/:id \
-   `Informação do usuário com :id`
-  >
-- [Admin] GET /api/v1/users \
-   `Informação sobre todos usuários (Index)`
-  >
-- [Admin] PUT /api/v1/users/:id \
-   `Update de usuário`
   >
 - [Admin] DELETE /api/v1/users/:id \
   `Remoção de usuário`
@@ -32,39 +23,30 @@
 
 ## Tickets:
 
-- [Public] GET /api/v1/tickets \
+- [Public] GET base_url/tickets \
    `Recupera todos os tickets`
   >
-- [Public] GET /api/v1/tickets/:id \
+- [Public] GET base_url/tickets/:id \
   `Recupera os detalhes sobre um ticket especifico`
   >
-- [Admin] POST /api/v1/tickets \
+- [Admin] POST base_url/tickets \
   `Cria um ticket`
   >
-- [Admin] PUT /api/v1/tickets/:id \
-  `Realiza o update de um ticket`
-  >
-- [Admin] DELETE /api/v1/tickets/:id \
+- [Admin] DELETE base_url/tickets/:id \
   `Deleta um ticket`
   >
 
 ## Orders:
 
-- [UserToken] GET /api/v1/orders \
-   `Recupera as ordens ativas para o usuário realizando a requisição`
-  >
-- [UserToken] GET /api/v1/orders/:id \
-  `Detalhes sobre uma ordem especifica`
-  >
-- [UserToken] POST /api/v1/orders \
-  `Cria uma ordem para comprar um ticket especifico`
-  >
-- [UserToken] DELETE /api/v1/orders/:id \
-  `Cancela uma ordem especifica`
+- [UserToken] POST base_url/orders \
+  `Cria uma ordem para comprar um ou mais ingressos`
   >
 
 ## Payment:
 
-- [UserToken] POST /api/v1/payments \
-  `Cria uma ordem de compra para um serviço externo consumir, ex: Stripe`
+- [UserToken] POST base_url/payment/method \
+  `Cria uma opção de pagamento de cartão para um usuário logado na aplicação`
+  >
+- [UserToken] POST base_url/payment/intent \
+  `Cria uma intenção de pagamento através do stripe utilizando a id da ordem de compra`
   >

@@ -10,6 +10,6 @@ const createPaymentMethodController = new CreateUserPaymentMethodController();
 
 paymentRoutes.post("/method", ensureAuth, createPaymentMethodController.handle);
 
-paymentRoutes.post("/intent", createPaymentIntentController.handle);
+paymentRoutes.post("/intent", ensureAuth, createPaymentIntentController.handle);
 
 export { paymentRoutes };

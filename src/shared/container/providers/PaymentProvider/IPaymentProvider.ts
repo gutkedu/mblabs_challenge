@@ -1,12 +1,11 @@
 import Stripe from "stripe";
 import { ICreatePaymentIntentDTO } from "@modules/payment/dtos/ICreatePaymentIntentDTO";
-import { ICreatePaymentMethodDTO } from "@modules/payment/dtos/ICreatePaymentMethodDTO";
+import { ICreateUserPaymentMethodDTO } from "@modules/payment/dtos/ICreateUserPaymentMethodDTO";
 
 export interface IPaymentProvider {
-  createPaymentMethod({}: ICreatePaymentMethodDTO): Promise<
-    Stripe.Response<Stripe.PaymentMethod>
-  >;
-  createPaymentIntent({}: ICreatePaymentIntentDTO): Promise<
-    Stripe.Response<Stripe.PaymentIntent>
-  >;
+  createPaymentMethod({
+    card,
+    type,
+  }: ICreateUserPaymentMethodDTO): Promise<any>;
+  createPaymentIntent({}: ICreatePaymentIntentDTO): Promise<any>;
 }

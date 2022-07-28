@@ -37,4 +37,18 @@ export class OrdersRepository implements IOrdersRepository {
   ): Promise<Ticket[]> {
     throw new Error("Method not implemented.");
   }
+
+  async findById(id: string): Promise<Order> {
+    const order = await this.repository
+      .createQueryBuilder("orders")
+      .leftJoinAndSelect("orders.user", "users")
+      .where("orders.id = :id", { id })
+      .getOne();
+    return order;
+  }
+
+  async updateFinishedStatus(order: Order): Promise<void> {
+    order.status = "finished";
+    await this.repository.save(order);
+  }
 }

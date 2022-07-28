@@ -13,6 +13,14 @@ interface IRequest {
   tickets_id: string[];
 }
 
+interface IResponse {
+  order: {
+    id: string;
+    expires_in: Date;
+    total_price: number;
+  };
+}
+
 @injectable()
 export class CreateOrderUseCase {
   constructor(
@@ -26,7 +34,7 @@ export class CreateOrderUseCase {
     private usersRepository: IUsersRepository
   ) {}
 
-  async execute({ user_id, tickets_id }: IRequest): Promise<Order> {
+  async execute({ user_id, tickets_id }: IRequest): Promise<IResponse> {
     let total_price: number = 0;
 
     const user = await this.usersRepository.findById(user_id);
@@ -54,6 +62,12 @@ export class CreateOrderUseCase {
       tickets,
     });
 
-    return order;
+    return {
+      order: {
+        id: order.id,
+        expires_in: order.expires_in,
+        total_price: order.total_price,
+      },
+    };
   }
 }

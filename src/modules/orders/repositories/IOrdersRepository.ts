@@ -8,4 +8,6 @@ export interface IOrdersRepository {
     user_id: string,
     tickets_id: string[]
   ): Promise<Ticket[]>;
+  findById(id: string): Promise<Order>;
+  updateFinishedStatus(order: Order): Promise<void>;
 }

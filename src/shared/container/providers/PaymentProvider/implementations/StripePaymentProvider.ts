@@ -2,7 +2,7 @@ import { IPaymentProvider } from "../IPaymentProvider";
 import Stripe from "stripe";
 import { injectable } from "tsyringe";
 import { ICreatePaymentIntentDTO } from "@modules/payment/dtos/ICreatePaymentIntentDTO";
-import { ICreatePaymentMethodDTO } from "@modules/payment/dtos/ICreatePaymentMethodDTO";
+import { ICreateUserPaymentMethodDTO } from "@modules/payment/dtos/ICreateUserPaymentMethodDTO";
 
 @injectable()
 export class StripePaymentProvider implements IPaymentProvider {
@@ -33,7 +33,9 @@ export class StripePaymentProvider implements IPaymentProvider {
   async createPaymentMethod({
     type,
     card,
-  }: ICreatePaymentMethodDTO): Promise<Stripe.Response<Stripe.PaymentMethod>> {
+  }: ICreateUserPaymentMethodDTO): Promise<
+    Stripe.Response<Stripe.PaymentMethod>
+  > {
     const paymentMethod = await this.stripe_public.paymentMethods.create({
       type,
       card,

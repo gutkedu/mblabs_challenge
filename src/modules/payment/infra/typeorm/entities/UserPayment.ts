@@ -7,7 +7,7 @@ import {
   OneToOne,
   PrimaryColumn,
 } from "typeorm";
-import { User } from "@modules/account/infra/typeorm/entities/User";
+import { User } from "../../../../account/infra/typeorm/entities/User";
 
 @Entity("user_payment")
 export class UserPayment {

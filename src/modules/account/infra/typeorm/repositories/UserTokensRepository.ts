@@ -1,9 +1,9 @@
 import { ICreateUserTokenDTO } from "@modules/account/dtos/ICreateUserTokenDTO";
-import { IUsersTokensRepository } from "@modules/account/repositories/IUserTokensRepository";
+import { IUserTokensRepository } from "@modules/account/repositories/IUserTokensRepository";
 import { getRepository, Repository } from "typeorm";
 import { UserTokens } from "../entities/UserTokens";
 
-export class UserTokensRepository implements IUsersTokensRepository {
+export class UserTokensRepository implements IUserTokensRepository {
   private repository: Repository<UserTokens>;
 
   constructor() {
